@@ -60,7 +60,7 @@ const TerminalInput = forwardRef<TerminalInputHandle, Props>(function TerminalIn
 
   return (
     <div
-      className="relative mb-3 flex shrink-0 cursor-text items-center border-b border-green-500/10 pb-3 text-base text-cyan-400 md:text-lg"
+      className="relative flex cursor-text items-center text-base text-cyan-400 md:text-lg"
       onClick={focusInput}
       role="presentation"
     >

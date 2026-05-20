@@ -102,7 +102,21 @@ body {
   color: #33ffb3;
 }
 
-/* ── Scrollbar ── */
+.terminal-entry {
+  animation: terminalEntry 0.2s ease-out;
+}
+
+@keyframes terminalEntry {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .terminal-output {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 255, 156, 0.3) transparent;

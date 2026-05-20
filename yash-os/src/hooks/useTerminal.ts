@@ -25,7 +25,11 @@ export const useTerminal = () => {
 
     setHistory((prev) => [
       ...prev,
-      { command: trimmed, output: result },
+      {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        command: trimmed,
+        output: result,
+      },
     ]);
   }, []);
 

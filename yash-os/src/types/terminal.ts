@@ -1,4 +1,5 @@
 export interface TerminalHistory {
-    command: string;
-    output: string | string[];
-  }
+  id: string;
+  command: string;
+  output: string | string[];
+}
