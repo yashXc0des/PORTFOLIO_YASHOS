@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #050816;
+  overflow: hidden;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
+  color: #00ff9c;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Crisp text — no glow/blur */
+.terminal-glow,
+.terminal-glow-cyan {
+  text-shadow: none;
+}
+
+/* ── CRT scanlines only (sharp, no blur) ── */
+.scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025),
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 90;
+}
+
+/* ── Blinking cursor ── */
+.cursor-blink {
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Matrix ambience ── */
+.matrix-column {
+  animation: matrixFall linear infinite;
+}
+
+@keyframes matrixFall {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* ── System panel — sharp borders, no glow ── */
+.system-panel {
+  box-shadow: none;
+}
+
+.status-led {
+  animation: ledPulse 2s step-end infinite;
+  box-shadow: none;
+}
+
+@keyframes ledPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ── Pixel art — crisp edges ── */
+.pixel-art,
+.cat-sprite {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ── Lucy quote box — no pulse glow ── */
+.lucy-bubble {
+  box-shadow: none;
+}
+
+/* ── Project cards ── */
+.project-card-line {
+  color: #00ff9c;
+}
+
+.project-card-line:hover {
+  text-shadow: none;
+  color: #33ffb3;
+}
+
+/* ── Scrollbar ── */
+.terminal-output {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 156, 0.3) transparent;
+}
+
+.terminal-output::-webkit-scrollbar {
+  display: block;
+  width: 5px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 156, 0.3);
+  border-radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matrix-column,
+  .status-led,
+  .cursor-blink {
+    animation: none;
+  }
+}

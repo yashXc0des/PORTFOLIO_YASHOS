@@ -1,0 +1,68 @@
+# Cat Animation Assets
+
+## Which format should I use?
+
+| Format | File extension | Best for | Get it from |
+|--------|---------------|----------|-------------|
+| **Sprite sheet** ⭐ | `.png` | **Pixel-art cats** (like your mockup) | itch.io, OpenGameArt |
+| **Lottie** | `.json` | Smooth vector / cute illustrated cats | [LottieFiles.com](https://lottiefiles.com) |
+| **GIF / WebP** | `.gif` `.webp` | Quick test, any animated cat | Google, itch.io |
+| **Built-in** | — | Fallback, no files needed | Already in code |
+
+---
+
+## Option 1: Lottie (`.json`) — you asked for this
+
+1. Go to **[lottiefiles.com](https://lottiefiles.com)** → search "cat walk"
+2. Download → **Export as Lottie JSON** (NOT GIF, NOT MP4)
+3. Save to:
+   ```
+   public/lottie/cat-walk.json
+   public/lottie/cat-idle.json   (optional, can copy walk)
+   public/lottie/cat-sleep.json  (optional)
+   ```
+4. In `src/components/Pet/catConfig.ts`:
+   ```ts
+   mode: "lottie",
+   ```
+
+---
+
+## Option 2: Sprite sheet (`.png`) — BEST for pixel art
+
+1. Find a pixel cat sprite sheet (horizontal strip of frames)
+2. Save to `public/sprites/cat-walk-sheet.png`
+3. In `catConfig.ts`:
+   ```ts
+   mode: "spritesheet",
+   spritesheet: {
+     frameWidth: 64,   // width of ONE frame in px
+     frameCount: 4,    // number of frames in the strip
+     fps: 8,
+   }
+   ```
+
+---
+
+## Option 3: GIF
+
+1. Save `cat-walk.gif` to `public/sprites/`
+2. In `catConfig.ts`: `mode: "gif"`
+
+---
+
+## Folder structure
+
+```
+public/
+├── lottie/
+│   ├── cat-walk.json    ← Lottie
+│   ├── cat-idle.json
+│   └── cat-sleep.json
+└── sprites/
+    ├── cat-walk-sheet.png   ← Sprite sheet
+    ├── cat-walk.gif         ← GIF
+    └── cat-idle.gif
+```
+
+If your file is missing, it auto-falls back to the built-in pixel cat.
